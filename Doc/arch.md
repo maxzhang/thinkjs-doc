@@ -264,7 +264,7 @@ var behavior = thinkRequire("AgentBehavior");
 * 执行标签位`form_parse`
 * 发送`X-Powered-By`响应头信息，值为thinkjs的版本号
 * 执行标签位`app_init`
-* 执行标签位`resource_check`，判断当前请求是否是静态资源类请求
+* 执行标签位`resource_check`，判断当前请求是否是静态资源类请求。静态资源类请求执行标签位`resource_output`
 * 执行标签位`path_info`，获取修改后的pathname
 * 执行标签位`route_check`，进行路由检测，识别对应的Group, Controller, Action
 * 执行标签位`app_begin`，检测当前请求是否有静态化缓存
