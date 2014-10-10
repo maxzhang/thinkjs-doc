@@ -334,10 +334,20 @@ D('Group').where({id: {
 }}).select()
 
 //SELECT * FROM `meinv_group` WHERE ( `id` >= 10 AND `id` <= 20 ) OR ( `title` LIKE '%welefen%' ) OR ( `date` > '2014-08-12' )
-D('Group')..where({id: {
+D('Group').where({id: {
   '>=': 10,
   '<=': 20
 }, 'title': ['like', '%welefen%'], date: ['>', '2014-08-12'], _logic: 'OR'}).select()
+
+//SELECT * FROM `think_group` WHERE ( `title` = 'test' ) AND (  ( `id` IN (1,2,3) ) OR ( `content` = 'www' ) )
+D('Group').where({
+  title: 'test',
+  _complex: {
+    id: ['IN', [1, 2, 3]],
+    content: 'www',
+    _logic: 'or'
+  }
+}).select()
 ```
 
 
