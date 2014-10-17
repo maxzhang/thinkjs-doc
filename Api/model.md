@@ -150,6 +150,36 @@ D('Group').join({
     }
   }
 }).select()
+
+// join的table为sql语句
+// 这个方式推荐和buildSql结合使用，也可以单独使用
+// SELECT id as team_id,ta.team_name,ifnull(sum,0) as sum FROM thinkjs_team AS ta LEFT JOIN ( SELECT tt.id as team_id,`team_name`,`team_partin_year`,sum(IFNULL(invest_value,0)) as sum FROM thinkjs_team AS tt LEFT JOIN `thinkjs_invest` AS ti ON tt.`id`=ti.`invest_team_id` WHERE ( invest_is_cancel = 0 or invest_is_cancel is null ) GROUP BY tt.`id` HAVING team_partin_year=2014 ORDER BY `sum` desc ) AS temp ON ta.`id`=temp.`team_id` ORDER BY sum desc
+
+return D('team').alias('tt')
+  .field('tt.id as team_id, team_name, team_partin_year, sum(IFNULL(invest_value, 0)) as sum')
+  .join({
+    table: 'invest', 
+    join: 'left', 
+    as: 'ti', 
+    on: ['tt.id', 'invest_team_id']
+  })
+  .where('invest_is_cancel = 0 or invest_is_cancel is null')
+  .group('tt.id')
+  .order({
+    sum: 'desc'
+  })
+  .having('team_partin_year='+year).buildSql();
+}).then(function(sql){
+  return D('team')
+    .field('id as team_id, ta.team_name, ifnull(sum, 0) as sum')
+    .alias('ta').join({
+      table: sql,
+      join: 'left',
+      as: 'temp',
+      on: ['id', 'temp.team_id']
+    })
+    .order('sum desc').select();
+});
 ```
 
 
