@@ -62,9 +62,12 @@ module.exports = Controller("Home/BaseController", function(){
 // App/Lib/Controller/Admin/BaseController.js
 module.exprots = Controller(function(){
     return {
-        init: function(http){
-            this.super("init", http);
-            var self = this;
+        //__before会在执行具体的action之前执行
+        __before: function(){
+            //登录页面不检测用户是否已经登录
+            if(this.http.action === 'login'){
+                return;
+            }
             return this.session("userInfo").then(function(userInfo){
                 //用户信息为空
                 if(isEmpty(userInfo)){
@@ -73,7 +76,7 @@ module.exprots = Controller(function(){
                         return self.error(403, "用户未登录，不能访问")
                     }else{
                         //跳转到登录页
-                        return self.redirect("/login");
+                        return self.redirect("/index/login");
                     }
                 }else{
                     //用户已经登录
@@ -95,5 +98,3 @@ indexAction: function(){
     var id = userInfo.id;
 }
 ```
-
-### 动态路由

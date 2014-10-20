@@ -6,7 +6,7 @@
 
 ### url过滤
 
-有时候为了搜索引起友好或者其他原因时，pathname值并不是直接`/分组/控制器/操作/`的方式，而是含有一些前缀后者后缀。
+有时候为了搜索引擎友好或者其他原因时，pathname值并不是直接`/分组/控制器/操作/`的方式，而是含有一些前缀后者后缀。
 
 比如：url后加`.html`让其更加友好，这种情况下可以通过下面的配置使其在识别的时候去除。
 
@@ -96,10 +96,27 @@ module.exports = [
 
 这里将doc后面的`xxx/yyy`值设置到参数`doc`中，那么在`IndexController.js`文件的`docAction`方法就可以通过 `this.get("doc")` 来获取该值。
 
-#### 字符串路由
+#### 规则路由
 
-@TODO
+规则路由包含静态地址和动态地址，或者是两种地址的结合，如：
+
+```
+module.exports = [
+    ["my", "user/info"],
+    ["blog/:id", "Blog/detail"],
+    ["group/:year/:month", "group/list"]
+]
+```
+规则路由以"/"进行参数分割，每个参数中以":"开头的参数表示动态参数，并且会自动生成一个对应的GET参数，如：上面的blog/:id，可以在Controller里的Action里通过`this.get('id')`来获取id的值。
 
 #### 静态路由
 
-@TODO
+静态路由是一种纯静态字符串的路由规则，如：
+
+```
+module.exports = [
+    ["top", "index/top"],
+    ["info", "index/user/info"]
+]
+```
+静态路由有时候做一些地址重定向的时候可能会用到。

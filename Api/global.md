@@ -4,19 +4,20 @@
 
 ### Promise
 
-Promise是一个全局的 [es6-promise](http://www.html5rocks.com/en/tutorials/es6/promises/) 对象， 含有如下的方法：
+thinkjs中的Promise使用了[es6-promise](http://www.html5rocks.com/en/tutorials/es6/promises/) 库，是个全局对象， 含有如下的方法：
 
 * `all(array)` 
 * `resolve(promise | thenable | obj)` 
 * `reject(obj)`
 * `race(array)`
 
-### Class(obj)
+### Class(superCls, prop)
 
-* obj `function | object` 如果是function，则执行这个function，并获取结果
+* superCls `function` 父类
+* prop `function | object` 如果是function，则执行这个function，并获取结果
 * return `function`
 
-通过该函数动态创建一个类，可以实现类继承和自动调用init方法的功能，同时实例化类的时候可以省去`new`。
+通过该函数动态创建一个类，可以实现类继承和自动调用init方法的功能，同时实例化类的时候可以省去`new`。如果只传了一个参数，则认为是prop。
 
 
 ```js
@@ -44,7 +45,7 @@ var name = instance.getName(); /*name is `A welefen`*/
 子类可以继承父类的方法，同时可以对方法进行重写。
 
 ```js
-var B = Class({}, A); //B类从A类继承而来
+var B = Class(A, {}); //B类从A类继承而来
 //B类的实例化
 var instance = B("welefen");
 var name = instance.getName(); /*name is `A welefen`*/
@@ -59,12 +60,12 @@ var name = instance.getName(); /*name is `B welefen`*/
 也可以在重写的方法里调用父类的方法，如：
 
 ```js
-var C = Class({
+var C = Class(A, {
     getName: function(){
         var name = this.super("getName");
         return "C " + name;
     }
-}, A); //从A类继承
+}); //从A类继承
 var instance = C("welefen");
 var name = instance.getName(); /*name is `C A welefen`*/
 ```
@@ -72,12 +73,12 @@ var name = instance.getName(); /*name is `C A welefen`*/
 如果有多级继承，想跨级调用父类的方法时，只能通过apply的方式调用原形链上的方法，如：
 
 ```js
-var D = Class({
+var D = Class(C, {
     getName: function(){
         var name = A.prototype.getName.apply(this, arguments);
         return 'D' + name;
     }
-}, C); //从C类继承
+}); //从C类继承
 var instance = D('welefen');
 var name = instnace.getName(); /*name is `D A welefen`*/;
 ```
