@@ -7,3 +7,40 @@ thinkjs无缝支持命令行模式的调用，控制器的逻辑可以和普通H
 ```shell
 node index.js /index/index
 ```
+
+如果需要带上参数，可以直接在后面加上对应的参数即可，如：
+
+```shell
+node index.js /index/index?name=welefen
+```
+
+也可以是：
+
+```shell
+node index.js /index/index/name/welefen
+```
+
+### 修改请求方法
+
+命令行执行默认的请求类型是GET，如果想改为其他的类型，可以用下面的方法：
+
+```shell
+node index.js url=/index/index&method=post
+```
+
+这样就把请求类型改为了post。但这种方式下，参数url的值里就不能包含&字符了（可以通过上面/的方式指定参数）。
+
+除了修改请求类型，还可以修改下面的参数：
+
+* `host` 修改请求的host 默认为127.0.0.1
+* `ip` 修改请求的ip 默认为127.0.0.1
+
+### 修改更多的headers
+
+有时候如果想修改更多的headers，可以传一个完整的json数据，如：
+
+```shell
+node index.js {"url":"/index/index","ip":"127.0.0.1","method":"POST","headers":{"xxx":"yyyy"}}
+```
+
+注：参数比如是一个合法的json数据结构。
