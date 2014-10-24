@@ -51,6 +51,7 @@ hello, thinkjs!
 
 通过键盘操作`ctrl+c`结束当前的进程，cd到`www`目录下，执行`node index.js`来启动服务。
 
+`注：` 有些系统下用apt-get来安装Node.js的话，命令名可能为nodejs。
 
 ### 项目结构说明
 创建项目后，会生成如下的目录结构：
