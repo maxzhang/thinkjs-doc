@@ -261,7 +261,7 @@ messageAction: function(){
 
 ### 超时处理
 
-有时候有些websocket会一直连接，但没有任何数据交互（比如：一些用来攻击连接的websocket）。如果不把这些websocket清理掉，那么占用的内容一直无法释放，同时对广播事件的性能也有影响。
+有时候有些websocket会一直连接，但没有任何数据交互（比如：一些用来攻击连接的websocket）。如果不把这些websocket清理掉，那么占用的内存一直无法释放，同时对广播事件的性能也有影响。
 
 thinkjs会每个websocket都添加了`activeTime`属性，这个属性值在每次有数据传输时都会更新。
 
