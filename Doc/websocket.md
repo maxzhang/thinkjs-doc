@@ -1,6 +1,6 @@
 ## WebSocket
 
-thinkjs可以无缝的支持`websocket`，写WebSocket的逻辑和普通的Http请求的方式一致，底层使用了[websocket](https://www.npmjs.org/package/websocket)模块。
+thinkjs可以无缝的支持`websocket`，写WebSocket的逻辑和普通的Http请求的方式一致，底层使用了[websocket-driver](https://www.npmjs.org/package/websocket-driver)模块。
 
 websocket的功能默认是关闭的，使用WebSocket需要开启下面的配置：
 
