@@ -292,3 +292,8 @@ module.exports = Controller(function(){
 })
 ```
 
+`注意：` 如果Controller中用类似于`websocketList`记录了所有的websocket，然后对websocket广播事件，那么开发的时候需要将APP_DEBUG设置为false，不然每次清除缓存的时候都将`websocketList`里的websocket清除了。
+
+### 示例
+
+[基于websocket的聊天室](/test/websocket)
