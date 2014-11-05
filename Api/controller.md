@@ -147,7 +147,7 @@ testAction: function(){
 
 如果不传`name`，那么获取所有上传的文件。
 
-@TODO 列出`file`数据格式
+具体的文件格式见： <http://www.thinkjs.org/doc/http.html#上传的文件>
 
 ### header(name, value)
 
