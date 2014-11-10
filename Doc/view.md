@@ -4,7 +4,13 @@
 
 thinkjs里默认使用的模版引擎是`ejs`，关于`ejs`的使用文档你可以看[这里](https://github.com/visionmedia/ejs)。
 
-你可以将模版因为修改为`jade`，也可以是其他的。模版引擎相关的配置如下：
+thinkjs除了支持`ejs`模版，还支持如下的模版：
+
+* `jade` 需要在项目里手动安装 [jade模块](https://www.npmjs.org/package/jade)
+* `swig` 需要在项目里手动安装 [swig模块](https://www.npmjs.org/package/swig)
+
+
+模版引擎相关的配置如下：
 
 ```js
 //模版引擎相关的配置
@@ -15,9 +21,8 @@ tpl_engine_type: "ejs", //模版引擎名称
 tpl_engine_config: {}, //这里定义模版引擎需要的一些额外配置，如：修改左右定界符
 ```
 
-如果模版引擎使用`jade`，那么将配置`tpl_engine_type`改为`jade`，同时手动安装 [jade模块](https://www.npmjs.org/package/jade)。
 
-如果使用其他的模版引擎，那么需要扩展Template对应的Driver，具体方式请见[这里]()。
+如果使用其他的模版引擎，那么需要扩展Template对应的Driver，具体方式请见thinkjs里的Template Driver写法。
 
 ### 模版文件
 
