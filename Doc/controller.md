@@ -184,6 +184,18 @@ module.exports = Controller(function(){
 call_controller: "Home:Index:_404"
 ```
 
+在`Home/IndexController.js`里定义`_404Action`方法：
+
+```js
+module.exports = Controller({
+    _404Action: function(){
+        this.status(404); //发送404状态码
+        this.end('not found');
+    }
+})
+```
+
+当然你也可以不输出404信息，而是输出一些推荐的内容，这些根据项目需要来进行。
 
 ### 常用方法
 
@@ -215,9 +227,9 @@ call_controller: "Home:Index:_404"
 
 ### 一些技巧
 
-#### 将Promise return
+#### 将promise返回
 
-Acttion里一般会从多个地方拉取数据，如：从数据库中查询数据，这些接口一般都是异步的，并且包装成了Promise。
+Action里一般会从多个地方拉取数据，如：从数据库中查询数据，这些接口一般都是异步的，并且包装成了Promise。
 
 我们知道，Promise会通过try{}catch(e){}来捕获异常，然后传递到catch里。如：
 
@@ -247,4 +259,16 @@ indexAction: function(){
 
 #### var self = this
 
-js中，函数作为一等公民存在。这样便利的同时，也会导致函数嵌套非常严重，
+JS中，函数是作为一等公民存在的，所以经常有函数嵌套。这时候需要将this赋值给变量供内部使用。
+
+在使用thinkjs开发项目中，推荐使用`self`作为这个变量名。如：
+
+```js
+listAciton: function(){
+    var self = this;
+    return D('Group').select().then(function(data){
+        self.success(data);
+    })
+}
+```
+
