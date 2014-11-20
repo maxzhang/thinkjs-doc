@@ -1,8 +1,4 @@
-## 模型
-
-<div class="alert alert-info">
-    thinkjs现在只对`mysql`做了封装，如果现在需要使用其他的数据库，可以直接require对应的模块。如：mongodb可以用`mongoose`模块。
-</div>
+## 模型（Mysql）
 
 在thinkjs中基础的模型类就是`Model`类，该类完成了基本的增删改查、连贯操作和统计查询，同时还有thenadd, countSelect等功能，更高级的功能封装在另外的模型扩展中。
 
@@ -290,3 +286,45 @@ D('Article').page(this.get("page"), 20).countSelect().then(function(data){
 ```
 
 关于模型接口的详细使用说明请见 [API - Model](/api/model.html) 。
+
+
+### 自动校验
+
+在把数据往数据库里添加或者更新的时候，我们需要对数据进行校验，防止非法的数据提交到数据库中。thinkjs支持在数据入库之前对数据进行校验。
+
+`App/Lib/Model/ArticleModel.js`
+
+```js
+module.exports = Model({
+    //定义数据校验的字段
+    fields: {
+        title: {
+            valid: ['required', 'length'],
+            length_args: [10],
+            msg: {
+                required: '标题不能为空',
+                length: '标题长度不能小于10'
+            }
+        },
+        url: {
+            valid: ['url'],
+            msg: 'url格式不正确'
+        }
+    }
+})
+```
+
+添加数据：
+
+```js
+D('Article').add({
+    title: 'xxx',
+    url: 'xxx'
+}).catch(function(err){
+    console.log(err)
+})
+```
+
+这样在添加数据的时候，自定校验title和url的值是否合法。
+
+具体是数据格式请见 [数据校验](http://127.0.0.1:1234/doc/data_valid.html)。

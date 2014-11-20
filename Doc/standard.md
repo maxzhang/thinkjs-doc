@@ -50,6 +50,21 @@ thinkjs里包装了很多功能的基类，如：`Model`, `Db`, `Controller`，�
 
 ### 异步
 
-thinkjs是基于es6-promise来实现的，大大简化了异步回调的代码逻辑。
+thinkjs是基于es6-promise来实现的，大大简化了异步回调的代码逻辑。如果你的项目比较复杂，需要开发一些独立的模块，建议也使用promise的方式。
 
-如果你的项目比较复杂，需要开发一些独立的模块，建议也使用promise的方式。
+thinkjs提供了`getDefer()`获取deferred对象，`getPromise()`获取promise对象。参见如下示例：
+
+```js
+//获取页面内容
+function getPageContent(){
+    var deferred = getDefer();
+    request.get('http://www.thinkjs.org', function(err, response, body){
+        if(err || response.statusCode !== 200){
+            deferred.reject(err || new Error('statusCode: ' + response.statusCode))
+        }else{
+            deferred.resolve(body);
+        }
+    })
+    return deferred.promise
+}
+```
