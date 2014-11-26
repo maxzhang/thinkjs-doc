@@ -327,4 +327,4 @@ D('Article').add({
 
 这样在添加数据的时候，自定校验title和url的值是否合法。
 
-具体是数据格式请见 [数据校验](http://127.0.0.1:1234/doc/data_valid.html)。
+具体是数据格式请见 [数据校验](/doc/data_valid.html)。
