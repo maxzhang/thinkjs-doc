@@ -106,9 +106,14 @@
     </nav>
     <div class="content">
     <div class="doc-content">
-      <!--!doc-content-->
+      <%-content%>
+      <div style="margin-top:30px;" class="alert alert-info">
+        该文档存放在: <a target="_blank" href="https://github.com/75team/thinkjs-doc/tree/master/<%-type%>/<%-docname%>.md">
+          https://github.com/75team/thinkjs-doc/tree/master/<%-type%>/<%-docname%>.md
+        </a>
+      </div>
 
-      <div id="docToc"><!--!toc-content--></div>
+      <div id="docToc"><%-tocContent%></div>
 
       <!-- 多说评论框 start -->
       <div class="ds-thread"></div>
