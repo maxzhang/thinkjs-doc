@@ -126,7 +126,7 @@ D('Group').alias('a').join({
 }).select()
 
 //SELECT * FROM `meinv_group` LEFT JOIN `meinv_cate` ON meinv_group.`id`=meinv_cate.`id` LEFT JOIN `meinv_group_tag` ON meinv_group.`id`=meinv_group_tag.`group_id`
-D('Group')join({
+D('Group').join({
   cate: {
     on: ['id', 'id']
   },
