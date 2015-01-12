@@ -314,15 +314,19 @@ module.exports = Model({
 })
 ```
 
-添加数据：
+添加数据，如：
 
 ```js
-D('Article').add({
-    title: 'xxx',
-    url: 'xxx'
-}).catch(function(err){
-    console.log(err)
-})
+indexAction: function(){
+    var self = this;
+    D('Article').add({
+        title: 'xxx',
+        url: 'xxx'
+    }).catch(function(err){
+        var data = JSON.parse(err.json_message);
+        self.error(100, 'data error', data);
+    })
+}
 ```
 
 这样在添加数据的时候，自定校验title和url的值是否合法。

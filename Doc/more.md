@@ -22,7 +22,7 @@ create_server_fn: 'create_server_fn_name',
 //函数名create_server_fn_name需要跟配置create_server_fn值一致
 global.create_server_fn_name = function(App){
       var server = require('http').createServer(function (req, res) {
-        thinkHttp(req, res).run().then(App.listener);
+        thinkRequire('Http')(req, res).run().then(App.listener);
       });
       server.listen(C('port'));
       //这里可以加入项目的扩展代码
