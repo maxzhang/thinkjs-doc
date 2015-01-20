@@ -103,10 +103,10 @@ this.fetch().then(function(content){
 
 ### ejs的基本使用方法
 
-ejs通过 &lt;% %&gt; 来构造基本的语法。
+ejs通过 `<%` 和 `%>` 来构造基本的语法。
 
-使用 &lt;%= %&gt; 与 &lt;%- %&gt; 来显示模板变量数据。
+使用 `<%= %>` 与 `<%- %>` 来显示模板变量数据。 `=`表示进行html转义，`-`表示不转义。
 
-使用 &lt;%if(条件语句){%&gt;代码&lt;%}%&gt; 来进行条件判断
+使用 `<%if(condition){%> code <%}%>` 来进行条件判断
 
-使用 &lt;%变量.forEach(function(item){ %&gt;代码&lt;%}%&gt; 来进行数据遍历
+使用 `<%data.forEach(function(item){%> <%=item%> <%})%>` 来进行数据遍历
