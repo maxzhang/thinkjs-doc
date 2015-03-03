@@ -322,7 +322,7 @@ testAction: function(){
     return this.session("userInfo").then(function(data){
         if(isEmpty(data)){
             //如果用户未登录，则跳转到登录页面
-            return self.rediect("/login");
+            return self.redirect("/login");
         }
     })
 }
