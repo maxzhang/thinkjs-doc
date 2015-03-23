@@ -148,3 +148,5 @@ post_ajax_filename_header: 'x-filename', //通过ajax上传文件时文件名对
 #### 原始的Request和Response对象
 
 http是一个包装的对象，但保留了原始的Request和Response对象，可以通过`http.req`和`http.res`来获取。
+
+比如：页面的url可以通过`http.req.url`来获取，对应在Action里就是`this.http.req.url`
