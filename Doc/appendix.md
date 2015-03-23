@@ -152,3 +152,4 @@ module.exports = {
 * `RUNTIME_PATH` runtime路径，对应为`App/Runtime`
 * `DATA_PATH` 临时数据路径，对应为`App/Runtime/Data`
 * `CACHE_PATH` 缓存路径，对应为`App/Runtime/Cache`
+* `RESOURCE_PATH` 资源路径，对应为`/www`
