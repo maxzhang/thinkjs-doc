@@ -386,7 +386,7 @@ testAction: function(){
     this.display('home/test_a.html');
     //绝对路径，直接调用
     this.display('/home/xxx/www/www.domain.com/ttt.html');
-    //调用其他分下的模版文件
+    //调用其他分组下的模版文件
     this.display('home:group:detail');
     //调用当前分组下其他的模版文件
     this.display('group:detail');
