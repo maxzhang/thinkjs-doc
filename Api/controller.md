@@ -366,7 +366,42 @@ testAction: function(){
 
 ### fetch(templateFile)
 
+获取渲染后的模版文件内容。
+
+* `templateFile` 需要渲染的模版文件路径
+* `return` 返回一个promise
+
+模版文件路径寻找规则如下：
+
+* 如果不传templateFile，那么自动根据当前的Group、Controller、Action拼接模版文件路径
+* 如果templateFile是个相对路径，那么自动追加`VIEW_PATH`
+* 如果templateFile是`group:controller:action`，那么会进行解析再拼接成对应的模版文件路径
+* 如果templateFile是个绝对路径，那么直接调用
+
+```
+testAction: function(){
+    //自动分析模版文件路径
+    this.display();
+    //路径前面追加VIEW_PATH
+    this.display('home/test_a.html');
+    //绝对路径，直接调用
+    this.display('/home/xxx/www/www.domain.com/ttt.html');
+    //调用其他分下的模版文件
+    this.display('home:group:detail');
+    //调用当前分组下其他的模版文件
+    this.display('group:detail');
+}
+```
+
 ### display(templateFile)
+
+输出渲染后的模版文件内容到浏览器。
+
+* `templateFile` 需要渲染的模版文件路径
+* `return` 返回一个promise
+
+`templateFile` 查找规则与[fetch](#fetchtemplatefile)方法的`templateFile`查找规则相同。
+
 
 ### action(action, data)
 
