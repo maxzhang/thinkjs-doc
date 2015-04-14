@@ -51,7 +51,7 @@ var errMsg = {
 
 * `length` 限制长度，需要传入限制长度的数值。如：`length_args: [6]` 长度不能小于6, `length_args: [6, 20]` 长度为6-20。
 * `required` 长度必须大于0
-* `regexp` 自定义正则检测。如：regexp_args: [/\w+{5}/]
+* `regexp` 自定义正则检测。如：regexp_args: [/\w{5}/]
 * `email` 邮箱
 * `time` 时间戳
 * `cnname` 中文

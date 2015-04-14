@@ -22,6 +22,24 @@ D('Group').field(['id', 'title']).select();
 D('Group').field(['id', 'title'], true).select();
 ```
 
+#### table(table, hasPrefix)
+
+设置表名
+
+* `table` String 表名
+* `hasPrefix` Boolean 表名里是否已经含有了表前缀
+
+```
+//设置表名为xxx
+D('Group').table('xxx').select();
+
+//也可以将一条sql语句设置为表名
+D('Group').group('name').buildSql().then(function(sql){
+  return D('Article').table(sql, true).select()
+}).then(function(data){
+  
+})
+```
 
 #### limit(offset, length)
 
@@ -688,6 +706,18 @@ D('Article').page(this.get("page"), 20).countSelect().then(function(data){
         data: [{}, {}] //详细的数据
     }
 });
+
+//countSelect里使用group
+D('Article').page(10).group('name').countSelect().then(function(data){
+
+})
+
+//countSelect里有子查询
+D('Group').group('name').buildSql().then(function(sql){
+  return D('Artigle').table(sql, true).countSelect();
+}).then(function(data){
+  
+})
 ```
 
 #### buildSql(options)
