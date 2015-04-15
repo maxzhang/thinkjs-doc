@@ -779,6 +779,41 @@ D('Group').query('SELECT * FROM __TABLE__ as a LEFT JOIN __USER__ as u ON a.id=u
 
 关闭当前数据库连接，非特殊条件下不要使用该方法。
 
+#### startTrans()
+
+开启事务
+
+* `return` Promise
+
+####  commit()
+
+提交事务
+
+* `return` Promise
+
+#### rollback()
+
+回滚事务
+
+* `return` Promise
+
+
+事务操作DEMO:
+
+```
+var model = D('Group');
+//开启事务
+model.startTrans().then(function(){
+  return model.add(data);
+}).then(function(){
+  return model.commit(); //提交事务
+}).catch(function(){
+  return model.rollback(); //回滚事务
+})
+```
+
+注意：只有支持事务的存储引擎使用这3个方法才有效
+
 ### 静态方法
 
 #### close()
