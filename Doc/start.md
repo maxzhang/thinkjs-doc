@@ -39,6 +39,24 @@ thinkjs -v
                                          
 ```
 
+
+### 更新thinkjs
+
+更新thinkjs，分成2种，一种是更新系统的thinkjs版本，更新后后续创建项目时使用新版的thinkjs。另一种是更新已有项目下的thinkjs版本。
+
+#### 更新系统的thinkjs
+
+```
+npm update -g thinkjs-cmd; //在*nix下，需要加上sudo执行
+```
+
+#### 更新项目里的thinkjs
+
+```
+cd 项目目录;
+npm update thinkjs;
+```
+
 ### 新建项目
 
 ```shell
